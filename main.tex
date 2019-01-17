@@ -1,0 +1,130 @@
+\input{header.tex}
+
+
+\title{Coupling microsimulation models with land-use transport models}
+
+%\author{\noun{Juste Raimbault}}
+\date{}
+
+\maketitle
+
+\justify
+
+
+\begin{abstract}
+	We describe here preliminary investigations towards the coupling of a land-use transport interaction model with a population microsimulation model, at the scale of a country. We situate the approach within the scientific landscape in terms of citation networks around works dealing with microsimulation. We then compare the characteristics of the two models and build on their complementarity to suggest research directions towards this coupling. 
+\end{abstract}
+
+
+
+
+%%%%%%%%%%%%
+\section{Introduction}
+
+
+A strong need of multi-scalar models to be applied to sustainable policy making is already shaping the construction of the next generation of territorial models \cite{Rozenblat2018}. Indeed, the coupling of complementary modeling approaches to the same systems is coined by \cite{banos2013pour} as an essential step forward in social simulation to be able to better tackle the complexity of such systems. The modeling activity must furthermore be highly integrated with other knowledge domains \cite{raimbault2017applied}, in particular empirical and theoretical approaches, to foster the production of applicable complex knowledge.
+
+The QUANT land-use transport interaction model \cite{batty2019generalized} responds to this constraints as it integrates fine data for population, employments and transportation at the scale of all UK, while keeping a simple and interpretable structure in the process implemented. Integrating it with a complementary model, possibly at an other scale, would open new possibilities for the design of territorial policies.
+
+In particular, population structure, demographic processes and dynamic aspects are not taken into account in the QUANT model, making microsimulation models \cite{birkin2011spatial} good candidates to be coupled with this model. The purpose of the type of microsimulation models we consider is to provide estimates of spatio-demographic trajectories of territories with a high precision, having an interest in themselves for projections, but also for local policies taking into account spatial heterogeneity and a variety of social processes which can be coupled with microsimulation (economics, crime, retail, health, environmental issues, etc.).
+
+There does not seem to be many works in the literature coupling spatial interaction models with microsimulation models
+
+
+
+%%%%%%%%%%%%
+\section{Scientific landscape}
+
+For a better grasp of the issues at stake in the approach taken, we propose to map the scientific landscape around works in microsimulation. We apply a part of the method introduced by \cite{raimbault2017exploration}, namely backward citation network reconstruction and mapping, using the open source tools provided. The method to construct the citation network starts from an initial corpus, and retrieves citing references for each paper in the corpus, recursively up to a specified depth. Citation data is crawled from google scholar and results are conditional to this data source (which has a good coverage in comparison to the WoS or Scopus, but includes grey literature and preprints).
+
+We construct the initial corpus with the 200 first responses to the request ``\texttt{microsimulation}'' and construct the citation network at depth 2 from these 200 references. We obtain a network with $\left|V\right|=146774$ nodes and $\left|E\right|=210341$ links, and an average in-degree of 1.43 (3.01 conditionally to have at least one citation). A Louvain community detection on the undirected network yields a directed modularity of 0.69, suggesting strong disciplinary patterns within the network.  
+
+It is interesting to remark that the first level (initial corpus) is highly integrated in terms of citations, since it exhibits an average in-degree of 6.46 on the giant component (181 out of 200 references), as shown in Fig.~\ref{fig:citnwdepth0}. The communities obtained already suggest disciplinary and thematic patterns: a large community (purple) includes the SimBritain model \cite{ballas2005simbritain}, issues about validation and synthetic populations, and may be interpreted as a methodological community; an other large community (green) deals with policy application of microsimulation models; and an other one with inequalities (blue); two smaller communities are focused on health applications of microsimulation (dark green) and the link with agent-based models (red), whereas the smallest community is difficult to classify and includes the Sverige model \cite{holm2002sverige}. The papers associated to the model we will study are distributed in the policy community \cite{wu2012moses}, the methodological community \cite{townend2009moses} and the unclassified community \cite{rees2017moses}.
+
+When studying the network at depth 1 (Fig.~\ref{fig:citnwdepth1}), a map of disciplines using microsimulation begin to emerge, and communities are at a lower granularity. Modularity is much higher (0.70). The proper microsimulation papers are split in a large community (blue) and two smaller ones (red and turquoise). We then observe two highly clustered communities corresponding to inequalities (green) and spatial statistics (purple). A community (orange) deals with the links with agent-based modeling. Finally, a community (in yellow) situated at the interface of ABM, microsimulation and spatial statistics deals with transportation and LUTI models, what is of particular interest for our positioning since it confirms the disciplinary relevance of coupling the two approaches and furthermore highlights issues which will be of first importance (the relation to ABMs for example).
+
+At depth 2, the network shown in Fig.~\ref{fig:citnwdepth2} describes the much broader scientific environment of microsimulation models. We still obtain a highly clustered community around inequalities, whereas health geography and LUTI are integrated with spatial statistics and two other communities dealing with two other approaches to inequalities. An other isolated and clustered community focuses on epidemiology. The broad microsimulation clusters acts as a backbone of the network, having roughly a similar proximity with the different domains (which is due to the construction process of the network), at the exception of a high integration with geosimulation and Luti models. This higher integration confirms the relevance of the approach proposed.
+
+Sensitivity to the initial corpus, by changing the number of initial references (and grasping smaller fields of application e.g.) or by starting with a list of specified papers, remains to be checked.
+
+
+%%%%%%%%%%%%
+\begin{figure}
+  \includegraphics[width=\linewidth]{figures/microsim_depth0.png}
+  \caption{Giant component of the citation network core at depth 0, i.e. 181 references out of the initial corpus with 200 references and the citation links between these. Average in-degree is 6.46 and Louvain modularity is 0.32.}
+  \label{fig:citnwdepth0}
+\end{figure}
+%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%
+\begin{figure}
+  \includegraphics[width=\linewidth]{figures/microsim_depth1.png}
+  \caption{Citation network core at depth 1. The core is constructed by removing all nodes having no citation, yielding a network of size $\left|V\right|=4846$ nodes and $\left|E\right|=15590$ links, average in-degree of 3.22 and modularity 0.70.}
+  \label{fig:citnwdepth1}
+\end{figure}
+%%%%%%%%%%%%
+
+%%%%%%%%%%%%
+\begin{figure}
+  \includegraphics[width=\linewidth]{figures/microsim_depth2_corehigher.png}
+  \caption{Citation network core at depth 2. For visibility purposes, we show here a ``higher order'' core, obtained by iteratively removing nodes of degree one until having only nodes with at least degree two. We have $\left|V\right|=31294$ and $\left|E\right|=94861$, an average in-degree of 3.03 and a modularity of 0.68.}
+  \label{fig:citnwdepth2}
+\end{figure}
+%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%
+\section{Complementarity of QUANT and MOSES}
+
+
+We give in Table~\ref{tab:comparison} a rough comparison of QUANT and MOSES models main properties. This highlights the advantages of each and how they can complement each other.
+
+
+%%%%%%%%%%%%
+\begin{table}
+\begin{threeparttable}
+	\caption{Main characteristics of QUANT and MOSES models.}\label{tab:comparison}
+	\centering
+	\begin{tabular}{|c|p{6cm}|p{6cm}|}
+	\toprule
+	& QUANT & MOSES \\
+	\midrule
+Time scale & 10 years $^{\ast 1}$ & 30 years \\
+Spatial scale & UK & UK \\
+Spatial resolution & Ward & Ward \\
+Static/Dynamic & Equilibrium (static) & Dynamic $^{\ast 2}$ \\
+Randomness & Deterministic & Monte-Carlo simulations \\
+Process: Transportation & 3 modes $^{\ast 3}$ & NA \\
+Process: Economic activities & Accessibility-based relocations & NA \\
+Process: Demographics & NA & Data-driven $^{\ast 4}$ \\
+Process: Migration flows & Accessibility-based relocations & Data-driven \\
+\bottomrule
+	\end{tabular}
+	\begin{tablenotes}
+      \small
+      \item $^{\ast 1}$ stylized time scale of metropolitan relocations \cite{wegener2004land}
+      \item $^{\ast 2}$ model structure is however stationary - this is an important issue for a possible application to 2070
+      \item $^{\ast 3}$ discrete choice for transportation mode is not implemented in QUANT \textbf{(?)} 
+      \item $^{\ast 4}$ probabilities of basic demographic events (ageing, mortality, fertility, household formation, health, migration) are computed from data
+    \end{tablenotes}
+	\end{threeparttable}
+\end{table}
+%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+%% Biblio
+%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{apalike}
+\bibliography{biblio}
+
+
+\end{document}
