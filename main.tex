@@ -26,9 +26,11 @@ A strong need of multi-scalar models to be applied to sustainable policy making 
 
 The QUANT land-use transport interaction model \cite{batty2019generalized} responds to this constraints as it integrates fine data for population, employments and transportation at the scale of all UK, while keeping a simple and interpretable structure in the process implemented. Integrating it with a complementary model, possibly at an other scale, would open new possibilities for the design of territorial policies.
 
-In particular, population structure, demographic processes and dynamic aspects are not taken into account in the QUANT model, making microsimulation models \cite{birkin2011spatial} good candidates to be coupled with this model. The purpose of the type of microsimulation models we consider is to provide estimates of spatio-demographic trajectories of territories with a high precision, having an interest in themselves for projections, but also for local policies taking into account spatial heterogeneity and a variety of social processes which can be coupled with microsimulation (economics, crime, retail, health, environmental issues, etc.).
+In particular, population structure, demographic processes and dynamic aspects are not taken into account in the QUANT model, making microsimulation models \cite{birkin2011spatial} good candidates to be coupled with this model. The purpose of the type of microsimulation models we consider is to provide estimates of spatio-demographic trajectories of territories with a high precision, having an interest in themselves for projections, but also for local policies taking into account spatial heterogeneity and a variety of social processes which can be coupled with microsimulation (economics, crime, retail, health, environmental issues, etc.). The MOSES model embeds various heterogenous data and is able to simulate demographic trajectories at the Ward level on a 30 years time span \cite{townend2009moses,Wu2013} (this model is distinct from a much older Moses microsimulation model focused on economic processes \cite{eliasson1989moses}). A user interface and the connexion to computation infrastructure allow its use for real decision making problems \cite{birkin2009moses}. It has been applied for example for the study of the spatial distribution of crime by coupling it with an agent-based model \cite{malleson2012analysis}. We will develop here potential directions to couple the QUANT model with the MOSES model (or more precisely its successor, called SPENCER).
 
-There does not seem to be many works in the literature coupling spatial interaction models with microsimulation models
+The literature is rather sparse on studies coupling spatial interaction models with microsimulation models. Examples include configurations where the spatial and demographic structure of population plays a role in its interaction with the object of study, such as retail \cite{Nakaya2007}, or in spatial epidemiology. Beside possible policy applications, our approach can therefore also provide methodological contributions.
+
+
 
 
 
@@ -45,7 +47,7 @@ When studying the network at depth 1 (Fig.~\ref{fig:citnwdepth1}), a map of disc
 
 At depth 2, the network shown in Fig.~\ref{fig:citnwdepth2} describes the much broader scientific environment of microsimulation models. We still obtain a highly clustered community around inequalities, whereas health geography and LUTI are integrated with spatial statistics and two other communities dealing with two other approaches to inequalities. An other isolated and clustered community focuses on epidemiology. The broad microsimulation clusters acts as a backbone of the network, having roughly a similar proximity with the different domains (which is due to the construction process of the network), at the exception of a high integration with geosimulation and Luti models. This higher integration confirms the relevance of the approach proposed.
 
-Sensitivity to the initial corpus, by changing the number of initial references (and grasping smaller fields of application e.g.) or by starting with a list of specified papers, remains to be checked.
+Sensitivity to the initial corpus, by changing the number of initial references (and grasping smaller fields of application e.g.) or by starting with a list of specified papers, remains to be checked. Also some parts of literature at the interface of agent-based modeling and microsimulation, which terminology is closer to ABM (e.g. the MATSIM model in the case of transportation), may have been missed here. A more systematic review as done in \cite{raimbault2018caracterisation} in the case of models of interactions between transportation and territories, combining a broader initial semantic search and a corpus based on a preliminary literature review validated by expert knowledge, should provide a more exhaustive overview of the scientific landscape.
 
 
 %%%%%%%%%%%%
@@ -80,7 +82,8 @@ Sensitivity to the initial corpus, by changing the number of initial references 
 \section{Complementarity of QUANT and MOSES}
 
 
-We give in Table~\ref{tab:comparison} a rough comparison of QUANT and MOSES models main properties. This highlights the advantages of each and how they can complement each other.
+We give in Table~\ref{tab:comparison} a rough comparison of QUANT and MOSES models main properties. This highlights the advantages of each and how they can complement each other. First of all, spatial and temporal scales, and spatial resolution, are reasonably comparable, implying that a coupling of these model should naturally be at the same level (although agent granularity is naturally different, the models are for this reason not exactly at the same level in terms of agents). The advantage should then be in the coupling of processes, by taking into account complementary aspects of the urban system that each model emphasizes. Indeed, when surveying processes included among the different components of the urban system, we observe that transportation and economic processes are not simulated in MOSES whereas they are part of the core of QUANT. On the contrary, demographic evolution is not simulated in QUANT but highly precise in MOSES. Finally, the movement of population in space is included in both but with different paradigms, since the microsimulation model uses migration probabilities estimated directly from real migration data whereas the Luti model distributes population according to accessibility patterns. The gordian knot of coupling will for this reason be on spatial population processes, as other aspects can be included without conflicting with the representation in the other model.
+
 
 
 %%%%%%%%%%%%
@@ -95,6 +98,7 @@ We give in Table~\ref{tab:comparison} a rough comparison of QUANT and MOSES mode
 Time scale & 10 years $^{\ast 1}$ & 30 years \\
 Spatial scale & UK & UK \\
 Spatial resolution & Ward & Ward \\
+Agent granularity & Aggregated counts & Person level \\
 Static/Dynamic & Equilibrium (static) & Dynamic $^{\ast 2}$ \\
 Randomness & Deterministic & Monte-Carlo simulations \\
 Process: Transportation & 3 modes $^{\ast 3}$ & NA \\
@@ -114,6 +118,18 @@ Process: Migration flows & Accessibility-based relocations & Data-driven \\
 \end{table}
 %%%%%%%%%%%%
 
+
+
+Possible coupling scenarios, with associated questions and potential outcomes, can be proposed:
+\begin{itemize}
+	\item Weak coupling Luti $\rightarrow$ microsimulation: using sequentially outputs of Quant as inputs of Moses. For example, evaluating a new transportation scenario will provide predictions for new populations, employments and commuting flows. Distributing the synthetic population and its movements conditionally to this new distribution (respecting reasonably some statistical properties of the original data, what may pose difficult synthetic data generation problems), and running the microsimulation model with this new parametrization, could provide micro-based measures of the impact of the new transportation line (e.g. exposure to pollution, access to health facilities, segregation, etc.). In that case, it does not seem to make much sense to use the aggregated prediction of the microsimulation model, since the uncertainty on input data will be high as a output of the upstream model (``\textit{garbage in-garbage out}''), and the coupled model has a prospective and scenario-testing function.
+	\item Weak coupling Microsimulation $\rightarrow$ Luti: the other way around, population projections obtained with microsimulation, which should be more precise than relocations by Quant (assuming that the system remains stationary and that exogenous effects are reasonably included), can be used as an input of the Quant model, in order to apply it in future times when for example planning long term infrastructure projects. More accurate future populations will provide more accurate generalized accessibility projections given or not some modification of the transportation network. The question answered and model function would also be territorial prospective. %(\textit{Open question : how do model functions in the sense of the typology of \cite{varenne2017theories} evolve during model coupling, do some typical patterns exist or is it case/scale specific ? Given a ``strength'' of models (a partial order on a subset of models given some objectives), are there patterns on the strength of the coupled model ?})
+	\item Both previous proposition make sense assuming large approximations and assumptions. However, assuming in the first case that population statistical properties remain similar after urban changes is not accurate, as the composition of population or their behavior may drastically change. In the second case, assuming that population projections do not depend much on the changes in the accessibility landscape is also not accurate. A strong coupling Microsimulation $\rightarrow$ Luti, in a sense a co-evolutive model between  demographic dynamics and dynamics of accessibility in terms of transportation, population and jobs, would object to these two inaccuracies and in theory be more appropriate. It would provide both applications, i.e. population exposure impacts of transport and land-use scenarios, but also accurate projections and planning. This being said, this approach must be taken with caution. Very few co-evolution models of territorial systems (whatever the objects studied) do exist in the literature, and the problem remains relatively opened methodologically, theoretically and empirically (e.g. \cite{raimbault2018modeling} extended the city system model of \cite{raimbault2018indirect} to provide a co-evolution model between transportation networks and territories at the macro-scale, which although very novel as such kind of models remains very simple and highly limited). For example, one can use Quant population dynamics to constraint microsimulation probabilities at fixed time steps, or one can on the contrary use microsimulation outputs as additional exogenous constraints for Quant which will be useful to redistribute employments and a given transportation scenario on a long time period. Many different coupling choices must be more thoroughly listed, studied and possibly compared. In that sense, building a strongly coupled model is similar to constructing a new model.
+\end{itemize}
+
+
+% \section{Other directions}
+% microsim models with other ontologies, e.g. Matsim for transportation ?
 
 
 
