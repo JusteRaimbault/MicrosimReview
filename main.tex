@@ -1,9 +1,10 @@
 \input{header.tex}
+\begin{document}
 
 
 \title{Coupling microsimulation models with land-use transport models}
 
-%\author{\noun{Juste Raimbault}}
+%\author{}
 \date{}
 
 \maketitle
@@ -24,11 +25,11 @@
 
 A strong need of multi-scalar models to be applied to sustainable policy making is already shaping the construction of the next generation of territorial models \cite{Rozenblat2018}. Indeed, the coupling of complementary modeling approaches to the same systems is coined by \cite{banos2013pour} as an essential step forward in social simulation to be able to better tackle the complexity of such systems. The modeling activity must furthermore be highly integrated with other knowledge domains \cite{raimbault2017applied}, in particular empirical and theoretical approaches, to foster the production of applicable complex knowledge.
 
-The QUANT land-use transport interaction model \cite{batty2019generalized} responds to this constraints as it integrates fine data for population, employments and transportation at the scale of all UK, while keeping a simple and interpretable structure in the process implemented. Integrating it with a complementary model, possibly at an other scale, would open new possibilities for the design of territorial policies.
+The QUANT land-use transport interaction model \cite{batty2019generalized} responds to this constraints as it integrates fine data for population, employments and transportation at the scale of all UK, while keeping a simple structure for the processes implemented. Integrating it with a complementary model, possibly at an other scale, would open new possibilities for the design of territorial policies.
 
 In particular, population structure, demographic processes and dynamic aspects are not taken into account in the QUANT model, making microsimulation models \cite{birkin2011spatial} good candidates to be coupled with this model. The purpose of the type of microsimulation models we consider is to provide estimates of spatio-demographic trajectories of territories with a high precision, having an interest in themselves for projections, but also for local policies taking into account spatial heterogeneity and a variety of social processes which can be coupled with microsimulation (economics, crime, retail, health, environmental issues, etc.). The MOSES model embeds various heterogenous data and is able to simulate demographic trajectories at the Ward level on a 30 years time span \cite{townend2009moses,Wu2013} (this model is distinct from a much older Moses microsimulation model focused on economic processes \cite{eliasson1989moses}). A user interface and the connexion to computation infrastructure allow its use for real decision making problems \cite{birkin2009moses}. It has been applied for example for the study of the spatial distribution of crime by coupling it with an agent-based model \cite{malleson2012analysis}. We will develop here potential directions to couple the QUANT model with the MOSES model (or more precisely its successor, called SPENCER).
 
-The literature is rather sparse on studies coupling spatial interaction models with microsimulation models. Examples include configurations where the spatial and demographic structure of population plays a role in its interaction with the object of study, such as retail \cite{Nakaya2007}, or in spatial epidemiology. Beside possible policy applications, our approach can therefore also provide methodological contributions.
+The literature is rather sparse on studies coupling spatial interaction models with microsimulation models. Examples include configurations where the spatial and demographic structure of population plays a role in its interaction with the object of study, such as retail \cite{Nakaya2007}, in spatial epidemiology \cite{morrissey2010examining}, or for socio-spatial simulations of a particular population \cite{wu2008spatial}. Beside possible policy applications, our approach can therefore also provide methodological contributions.
 
 
 
@@ -128,12 +129,13 @@ Possible coupling scenarios, with associated questions and potential outcomes, c
 \end{itemize}
 
 
-\section{Perspectives}
+\section{Other perspectives}
 
 % microsim models with other ontologies, e.g. Matsim for transportation ?
 
 \begin{itemize}
-	\item Matsim is an agent-based approach to transportation demand \cite{horni2016multi}
+	\item Matsim is an agent-based approach to transportation demand which is activity-based \cite{horni2016multi}. It can simulate agents behavior within the transportation system (traffic flows) and behavioral patterns generating the travel demand. According to \cite{wise2016transportation}, accurate description of transportation remains a point to be explored for agent-based model. A weak coupling of Quant and Matsim would be interesting in that sense, and allow to precisely explore the consequence of transportation scenarios.
+	\item More generally, the fuzzy boundary between microsimulation and agent-based modeling may be an interesting point to be investigated, both methodologically and theoretically.
 \end{itemize}
 
 
