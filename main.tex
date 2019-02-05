@@ -32,13 +32,48 @@ In particular, population structure, demographic processes and dynamic aspects a
 The literature is rather sparse on studies coupling spatial interaction models with microsimulation models. Examples include configurations where the spatial and demographic structure of population plays a role in its interaction with the object of study, such as retail \cite{Nakaya2007}, in spatial epidemiology \cite{morrissey2010examining}, or for socio-spatial simulations of a particular population \cite{wu2008spatial}. Beside possible policy applications, our approach can therefore also provide methodological contributions.
 
 
+\subsection{Microsimulation models}
+
+\cite{orcutt1957new} introduced the seminal idea of dealing with individual units which led to the emergence of microsimulation approaches in for socio-economic systems.
+
+\cite{birkin2012review} review :
+\begin{itemize}
+    \item Privileged fields of application for policy evaluation: taxation scheme evaluation; pension management anticipation; health (environment-dependant conditions and spatial distribution of health services); transport (traffic microsimulations - \textit{even closer to ABMs in this field, the difference would be the application to policies or network interventions, rather than a principal focus on agent behavior}).
+    \item Static vs Dynamic: static has fixed rules and updates weights e.g, dynamic simulates interactions and endogenous changes; static is cheap computationally.
+    \item Spatial aspect: inclusion of precise local context; various sources and application to projections.
+    \item Need for new hybrid approaches tackling: scale of datasets needed and deployment; no bottom-up feedback in MSMs (i.e. long time scale social dynamics); less capabilities in behavioral modeling; problems with validation (\textit{rq: I think it is roughly the same for ABMs and CAs, validation standards are rather sparse}). Proposal: space as the bridge between ABM and MSM; GIS as support for ABMs; synthesis of the three. (multi-scale / endogeneity etc. / co-evolution for transport - see \cite{batty2019causality} : many (coupled) models, different perspectives). Behavioral changes linked to policies and reciprocally can better be taken into account.
+\end{itemize}
+
+
+\subsection{Differences between microsimulation and agent-based models}
+
+\textbf{Possible main question for the paper: are ABMs and MSMs so different ?} (what about other models ?)
+
+
+
+
+
+\subsection{Description of the MOSES model}
+
+
+
 
 
 
 %%%%%%%%%%%%
-\section{Scientific landscape}
+\section{Mapping of the scientific landscape}
+
+\paragraph{Citation network analysis}
+
+
+\paragraph{Methods}
 
 For a better grasp of the issues at stake in the approach taken, we propose to map the scientific landscape around works in microsimulation. We apply a part of the method introduced by \cite{raimbault2017exploration}, namely backward citation network reconstruction and mapping, using the open source tools provided. The method to construct the citation network starts from an initial corpus, and retrieves citing references for each paper in the corpus, recursively up to a specified depth. Citation data is crawled from google scholar and results are conditional to this data source (which has a good coverage in comparison to the WoS or Scopus, but includes grey literature and preprints).
+
+
+
+
+\subsection{Preliminary results}
 
 We construct the initial corpus with the 200 first responses to the request ``\texttt{microsimulation}'' and construct the citation network at depth 2 from these 200 references. We obtain a network with $\left|V\right|=146774$ nodes and $\left|E\right|=210341$ links, and an average in-degree of 1.43 (3.01 conditionally to have at least one citation). A Louvain community detection on the undirected network yields a directed modularity of 0.69, suggesting strong disciplinary patterns within the network.  
 
@@ -77,10 +112,19 @@ Sensitivity to the initial corpus, by changing the number of initial references 
 %%%%%%%%%%%%
 
 
+\textit{Specificity of community detection in citation networks ? } \cite{chen2010community} directed top-down modularity maximization (citation communities in PR publications) ; \cite{malliaros2013clustering} review of methods for directed modularity detection.
+
+%%%%%%%%%%%
+\subsection{Interdisciplinarity levels and bridge publications}
+
+Questions to be answered using centrality indices (test specific measures ? \cite{latora2007measure}) and interdisciplinarity measures \cite{leydesdorff2011indicators}
 
 
 %%%%%%%%%%%%
 \section{Complementarity of QUANT and MOSES}
+
+\textit{Possible meta-analysis ?} $\rightarrow$ collect characteristics for more models; link to disciplinary/semantic characateristics
+
 
 
 We give in Table~\ref{tab:comparison} a rough comparison of QUANT and MOSES models main properties. This highlights the advantages of each and how they can complement each other. First of all, spatial and temporal scales, and spatial resolution, are reasonably comparable, implying that a coupling of these model should naturally be at the same level (although agent granularity is naturally different, the models are for this reason not exactly at the same level in terms of agents). The advantage should then be in the coupling of processes, by taking into account complementary aspects of the urban system that each model emphasizes. Indeed, when surveying processes included among the different components of the urban system, we observe that transportation and economic processes are not simulated in MOSES whereas they are part of the core of QUANT. On the contrary, demographic evolution is not simulated in QUANT but highly precise in MOSES. Finally, the movement of population in space is included in both but with different paradigms, since the microsimulation model uses migration probabilities estimated directly from real migration data whereas the Luti model distributes population according to accessibility patterns. The gordian knot of coupling will for this reason be on spatial population processes, as other aspects can be included without conflicting with the representation in the other model.
@@ -98,8 +142,8 @@ We give in Table~\ref{tab:comparison} a rough comparison of QUANT and MOSES mode
 	\midrule
 Time scale & 10 years $^{\ast 1}$ & 30 years \\
 Spatial scale & UK & UK \\
-Spatial resolution & Ward & Ward \\
-Agent granularity & Aggregated counts & Person level \\
+Spatial resolution & MSOA & Ward \\
+Agent granularity & Aggregated counts & individual level \\
 Static/Dynamic & Equilibrium (static) & Dynamic $^{\ast 2}$ \\
 Randomness & Deterministic & Monte-Carlo simulations \\
 Process: Transportation & 3 modes $^{\ast 3}$ & NA \\
@@ -133,10 +177,37 @@ Possible coupling scenarios, with associated questions and potential outcomes, c
 
 % microsim models with other ontologies, e.g. Matsim for transportation ?
 
-\begin{itemize}
-	\item Matsim is an agent-based approach to transportation demand which is activity-based \cite{horni2016multi}. It can simulate agents behavior within the transportation system (traffic flows) and behavioral patterns generating the travel demand. According to \cite{wise2016transportation}, accurate description of transportation remains a point to be explored for agent-based model. A weak coupling of Quant and Matsim would be interesting in that sense, and allow to precisely explore the consequence of transportation scenarios.
-	\item More generally, the fuzzy boundary between microsimulation and agent-based modeling may be an interesting point to be investigated, both methodologically and theoretically.
-\end{itemize}
+\subsection{Microsimulation and agent-based modeling}
+
+\subsubsection{The MATSim model}
+
+ Matsim is an agent-based approach to transportation demand which is activity-based \cite{horni2016multi}. It can simulate agents behavior within the transportation system (traffic flows) and behavioral patterns generating the travel demand. According to \cite{wise2016transportation}, accurate description of transportation remains a point to be explored for agent-based models. A weak coupling of Quant and Matsim would be interesting in that sense, and allow to precisely explore the consequence of transportation scenarios.
+
+\begin{table}
+\caption{Characteristics of the MATSim model}
+\begin{tabular}{|c|p{6cm}|}
+	\toprule
+	& MATSim \\
+	\midrule
+Time scale & 1 day \\
+Spatial scale & Any scale (mostly metropolitan area)\\
+Spatial resolution & Activities coordinates \\
+Agent granularity & Individual level \\
+Static/Dynamic & Dynamic Stochastic User Equilibrium \\
+Randomness & Stochastic co-evolutionary algorithm (agent level) \\
+Process: Transportation & Several modes; microsimulated\\
+Process: Economic activities & Exogenous \\
+Process: Demographics & NA (agent schedules as input) \\
+Process: Migration flows & NA \textbf{check if origins can change} \\
+Process: Transportation congestion & Link queuing
+\bottomrule
+	\end{tabular}
+\end{table}
+
+
+
+ More generally, the fuzzy boundary between microsimulation and agent-based modeling may be an interesting point to be investigated, both methodologically and theoretically.
+
 
 
 
