@@ -1,0 +1,212 @@
+\input{header.tex}
+\begin{document}
+
+%%% Start of article front matter
+\begin{frontmatter}
+
+\begin{fmbox}
+\dochead{Research}
+
+\title{Citation network analysis of a scientific landscape in urban modeling}
+
+\author[
+   addressref={aff1},                   % id's of addresses, e.g. {aff1,aff2}
+   corref={aff1},                       % id of corresponding address, if any
+   %noteref={n1},                        % id's of article notes, if any
+   email={juste.raimbault@polytechnique.edu}   % email address
+]{\inits{JR}\fnm{Juste} \snm{Raimbault}}
+\author[
+   addressref={aff1,aff2},
+   email={john.RS.Smith@cambridge.co.uk}
+]{\inits{JRS}\fnm{John RS} \snm{Smith}}
+
+\address[id=aff1]{%                           % unique id
+  \orgname{Department of Zoology, Cambridge}, % university, etc
+  \street{Waterloo Road},                     %
+  %\postcode{}                                % post or zip code
+  \city{London},                              % city
+  \cny{UK}                                    % country
+}
+\address[id=aff2]{%
+  \orgname{CASA, UCL},
+  \street{D\"{u}sternbrooker Weg 20},
+  \postcode{24105}
+  \city{London},
+  \cny{UK}
+}
+
+\begin{artnotes}
+%\note{Sample of title note}     % note to the article
+%\note[id=n1]{Equal contributor} % note, connected to author
+\end{artnotes}
+
+\end{fmbox}% comment this for two column layout
+
+\begin{abstractbox}
+
+\begin{abstract} % abstract
+%\parttitle{First part title} %if any
+Several modeling approaches to the evolution of urban and territorial environments have been introduced in the literature, providing complementary viewpoints and methods. This paper contributes to the mapping of this scientific landscape by a citation network analysis. Taking the case study of two landmark types of operational models, namely microsimulation models and land-use transport interaction model, we construct an initial corpus through keyword requests. The backward citation network is then reconstructed up to depth two, yielding a network with $1.47\cdot 10^5$ nodes and $2.10\cdot 10^5$ citation links. Community detection in the network provides endogenous disciplines and approaches, including a broader scope than the initial corpus, with for example spatial statistics and agent-based modeling. We construct measures of interdisciplinarity to identify bridge papers, and investigate possible missing connections. We illustrate these more particularly with the interface of microsimulation, agent-based modeling and land-use transport models, and discuss potential coupling of models filling this gap. We show therein how potential research directions can be unveiled through citation network analysis and provide partial maps of science in the field of urban modeling, which can be used by researchers and practitioners to better contextualize their modeling approaches.
+\end{abstract}
+
+\begin{keyword}
+\kwd{citation network}
+\kwd{interdisciplinarity}
+\kwd{urban modeling}
+\kwd{land-use transport interaction models}
+\kwd{microsimulation models}
+\end{keyword}
+
+
+\end{abstractbox}
+%
+%\end{fmbox}% uncomment this for twcolumn layout
+
+\end{frontmatter}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Methods and data}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Results}
+
+\subsection*{Community detection}
+
+
+\subsection*{Measuring interdisciplinarity}
+
+
+\subsection*{A case study: LUTI and microsimulation}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Discussion}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+\section*{Conclusion}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                          %%
+%% Backmatter begins here                   %%
+%%                                          %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{backmatter}
+
+%\section*{Competing interests}
+%  The authors declare that they have no competing interests.
+
+%\section*{Author's contributions}
+%    Text for this section \ldots
+
+%\section*{Acknowledgements}
+%  Text for this section \ldots
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                  The Bibliography                       %%
+%%                                                         %%
+%%  Bmc_mathpys.bst  will be used to                       %%
+%%  create a .BBL file for submission.                     %%
+%%  After submission of the .TEX file,                     %%
+%%  you will be prompted to submit your .BBL file.         %%
+%%                                                         %%
+%%                                                         %%
+%%  Note that the displayed Bibliography will not          %%
+%%  necessarily be rendered by Latex exactly as specified  %%
+%%  in the online Instructions for Authors.                %%
+%%                                                         %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% if your bibliography is in bibtex format, use those commands:
+\bibliographystyle{bmc-mathphys} % Style BST file (bmc-mathphys, vancouver, spbasic).
+\bibliography{biblio}      % Bibliography file (usually '*.bib' )
+% for author-year bibliography (bmc-mathphys or spbasic)
+% a) write to bib file (bmc-mathphys only)
+% @settings{label, options="nameyear"}
+% b) uncomment next line
+%\nocite{label}
+
+% or include bibliography directly:
+% \begin{thebibliography}
+% \bibitem{b1}
+% \end{thebibliography}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Figures                       %%
+%%                               %%
+%% NB: this is for captions and  %%
+%% Titles. All graphics must be  %%
+%% submitted separately and NOT  %%
+%% included in the Tex document  %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%
+%% Do not use \listoffigures as most will included as separate files
+
+%  \begin{figure}[h!]
+%  \caption{\csentence{Sample figure title.}
+%      A short description of the figure content
+%      should go here.}
+%      \end{figure}
+
+%\begin{figure}[h!]
+%  \caption{\csentence{Sample figure title.}
+%      Figure legend text.}
+%      \end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Tables                        %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{table}[h!]
+%\caption{Sample table title. This is where the description of the table should go.}
+%      \begin{tabular}{cccc}
+%        \hline
+%           & B1  &B2   & B3\\ \hline
+%        A1 & 0.1 & 0.2 & 0.3\\
+%        A2 & ... & ..  & .\\
+%        A3 & ..  & .   & .\\ \hline
+%      \end{tabular}
+%\end{table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                               %%
+%% Additional Files              %%
+%%                               %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section*{Additional Files}
+%  \subsection*{Additional file 1 --- Sample additional file title}
+%    Additional file descriptions text (including details of how to   view the file, if it is in a non-standard format or the file extension).  This might   refer to a multi-page table or a figure.
+% \subsection*{Additional file 2 --- Sample additional file title}
+%    Additional file descriptions text.
+
+
+\end{backmatter}
+\end{document}
+
+
+

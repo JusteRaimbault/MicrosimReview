@@ -1,153 +1,85 @@
+%% BioMed_Central_Tex_Template_v1.06
+%%                                      %
+%  bmc_article.tex            ver: 1.06 %
+%                                       %
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Standard header for working papers
-%
-% WPHeader.tex
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%IMPORTANT: do not delete the first line of this template
+%%It must be present to enable the BMC Submission system to
+%%recognise this template!!
 
-\documentclass[11pt]{article}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% TEMPLATES
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% Simple Tabular
-
-%\begin{tabular}{ |c|c|c| } 
-% \hline
-% cell1 & cell2 & cell3 \\ 
-% cell4 & cell5 & cell6 \\ 
-% cell7 & cell8 & cell9 \\ 
-% \hline
-%\end{tabular}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                     %%
+%%  LaTeX template for BioMed Central  %%
+%%     journal article submissions     %%
+%%                                     %%
+%%          <8 June 2012>              %%
+%%                                     %%
+%%                                     %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                                                 %%
+%% For instructions on how to fill out this Tex template           %%
+%% document please refer to Readme.html and the instructions for   %%
+%% authors page on the biomed central website                      %%
+%% http://www.biomedcentral.com/info/authors/                      %%
+%%                                                                 %%
+%% Please do not use \input{...} to include other tex files.       %%
+%% Submit your LaTeX manuscript as one .tex document.              %%
+%%                                                                 %%
+%% All additional figures and files should be attached             %%
+%% separately and not embedded in the \TeX\ document itself.       %%
+%%                                                                 %%
+%% BioMed Central currently use the MikTex distribution of         %%
+%% TeX for Windows) of TeX and LaTeX.  This is available from      %%
+%% http://www.miktex.org                                           %%
+%%                                                                 %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% additional documentclass options:
+%  [doublespacing]
+%  [linenumbers]   - put the line numbers on margins
+
+%%% loading packages, author definitions
+
+%\documentclass[twocolumn]{bmcart}% uncomment this for twocolumn layout and comment line below
+\documentclass{bmcart}
+
+%%% Load packages
+%\usepackage{amsthm,amsmath}
+%\RequirePackage{natbib}
+%\RequirePackage[authoryear]{natbib}% uncomment this for author-year bibliography
+%\RequirePackage{hyperref}
+\usepackage[utf8]{inputenc} %unicode support
+%\usepackage[applemac]{inputenc} %applemac support if unicode package fails
+%\usepackage[latin1]{inputenc} %UNIX support if unicode package fails
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-
-% encoding 
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-
-
-% general packages without options
-\usepackage{amsmath,amssymb,amsthm,bbm}
-
-% graphics
-\usepackage{graphicx,transparent,eso-pic}
-
-% text formatting
-\usepackage[document]{ragged2e}
-\usepackage{pagecolor,color}
-%\usepackage{ulem}
-\usepackage{soul}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%                                             %%
+%%  If you wish to display your graphics for   %%
+%%  your own use using includegraphic or       %%
+%%  includegraphics, then comment out the      %%
+%%  following two lines of code.               %%
+%%  NB: These line *must* be included when     %%
+%%  submitting to BMC.                         %%
+%%  All figure files must be submitted as      %%
+%%  separate graphics through the BMC          %%
+%%  submission process, not included in the    %%
+%%  submitted article.                         %%
+%%                                             %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% conditions
-\usepackage{ifthen}
-
-
-\usepackage{booktabs}
-\usepackage{threeparttable}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Maths environment
-%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\newtheorem{theorem}{Theorem}[section]
-%\newtheorem{lemma}[theorem]{Lemma}
-%\newtheorem{proposition}[theorem]{Proposition}
-%\newtheorem{corollary}[theorem]{Corollary}
-
-%\newenvironment{proof}[1][Proof]{\begin{trivlist}
-%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-%\newenvironment{definition}[1][Definition]{\begin{trivlist}
-%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-%\newenvironment{example}[1][Example]{\begin{trivlist}
-%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-%\newenvironment{remark}[1][Remark]{\begin{trivlist}
-%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
-
-%\newcommand{\qed}{\nobreak \ifvmode \relax \else
-%      \ifdim\lastskip<1.5em \hskip-\lastskip
-%      \hskip1.5em plus0em minus0.5em \fi \nobreak
-%      \vrule height0.75em width0.5em depth0.25em\fi}
-
-
-%% Commands
-
-\newcommand{\noun}[1]{\textsc{#1}}
-
-
-%% Math
-
-% Operators
-\DeclareMathOperator{\Cov}{Cov}
-\DeclareMathOperator{\Var}{Var}
-\DeclareMathOperator{\E}{\mathbb{E}}
-\DeclareMathOperator{\Proba}{\mathbb{P}}
-
-\newcommand{\Covb}[2]{\ensuremath{\Cov\!\left[#1,#2\right]}}
-\newcommand{\Eb}[1]{\ensuremath{\E\!\left[#1\right]}}
-\newcommand{\Pb}[1]{\ensuremath{\Proba\!\left[#1\right]}}
-\newcommand{\Varb}[1]{\ensuremath{\Var\!\left[#1\right]}}
-
-% norm
-\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+%\def\includegraphic{}
+%\def\includegraphics{}
 
 
 
-% argmin
-\DeclareMathOperator*{\argmin}{\arg\!\min}
+%%% Put your definitions there:
+\startlocaldefs
+\endlocaldefs
 
 
-% amsthm environments
-\newtheorem{definition}{Definition}
-\newtheorem{proposition}{Proposition}
-\newtheorem{assumption}{Assumption}
-
-%% graphics
-
-% renew graphics command for relative path providment only ?
-%\renewcommand{\includegraphics[]{}}
-
-
-
-
-
-
-
-
-% geometry
-\usepackage[margin=2cm]{geometry}
-
-% layout : use fancyhdr package
-\usepackage{fancyhdr}
-\pagestyle{fancy}
-
-\makeatletter
-
-\renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0.4pt}
-\fancyhead[RO,RE]{\textit{Working Paper}}
-\fancyhead[LO,LE]{CASA/ISC-PIF}
-\fancyfoot[RO,RE] {\thepage}
-\fancyfoot[LO,LE] {\noun{J. Raimbault}}
-\fancyfoot[CO,CE] {}
-
-\makeatother
-
-
-
+%%% Begin ...
