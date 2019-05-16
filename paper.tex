@@ -7,32 +7,44 @@
 \begin{fmbox}
 \dochead{Research}
 
-\title{Citation network analysis of a scientific landscape in urban modeling}
+\title{Citation network analysis of urban modeling research}
 
 \author[
-   addressref={aff1},                   % id's of addresses, e.g. {aff1,aff2}
+   addressref={aff1,aff2,aff3},                   % id's of addresses, e.g. {aff1,aff2}
    corref={aff1},                       % id of corresponding address, if any
    %noteref={n1},                        % id's of article notes, if any
    email={juste.raimbault@polytechnique.edu}   % email address
 ]{\inits{JR}\fnm{Juste} \snm{Raimbault}}
 \author[
-   addressref={aff1,aff2},
-   email={john.RS.Smith@cambridge.co.uk}
-]{\inits{JRS}\fnm{John RS} \snm{Smith}}
+   addressref={aff2},
+   email={m.vanhoof@ucl.ac.uk}
+]{\inits{MV}\fnm{Maarten} \snm{Vanhoof}}
+\author[
+   addressref={aff2},
+   email={m.batty@ucl.ac.uk}
+]{\inits{MB}\fnm{Michael} \snm{Batty}}
+
 
 \address[id=aff1]{%                           % unique id
-  \orgname{Department of Zoology, Cambridge}, % university, etc
-  \street{Waterloo Road},                     %
-  %\postcode{}                                % post or zip code
-  \city{London},                              % city
-  \cny{UK}                                    % country
+  \orgname{UPS CNRS 3611 ISC-PIF}, % university, etc
+  %\street{113 rue Nationale},                     %
+  %\postcode{75013}                                % post or zip code
+  \city{Paris},                              % city
+  \cny{France}                                    % country
 }
 \address[id=aff2]{%
   \orgname{CASA, UCL},
-  \street{D\"{u}sternbrooker Weg 20},
-  \postcode{24105}
+  %\street{},
+  %\postcode{}
   \city{London},
   \cny{UK}
+}
+\address[id=aff3]{%
+  \orgname{UMR CNRS 8504 G{\'e}ographie-cit{\'e}s},
+  %\street{},
+  %\postcode{}
+  \city{Paris},
+  \cny{France}
 }
 
 \begin{artnotes}
@@ -46,7 +58,7 @@
 
 \begin{abstract} % abstract
 %\parttitle{First part title} %if any
-Several modeling approaches to the evolution of urban and territorial environments have been introduced in the literature, providing complementary viewpoints and methods. This paper contributes to the mapping of this scientific landscape by a citation network analysis. Taking the case study of two landmark types of operational models, namely microsimulation models and land-use transport interaction model, we construct an initial corpus through keyword requests. The backward citation network is then reconstructed up to depth two, yielding a network with $1.47\cdot 10^5$ nodes and $2.10\cdot 10^5$ citation links. Community detection in the network provides endogenous disciplines and approaches, including a broader scope than the initial corpus, with for example spatial statistics and agent-based modeling. We construct measures of interdisciplinarity to identify bridge papers, and investigate possible missing connections. We illustrate these more particularly with the interface of microsimulation, agent-based modeling and land-use transport models, and discuss potential coupling of models filling this gap. We show therein how potential research directions can be unveiled through citation network analysis and provide partial maps of science in the field of urban modeling, which can be used by researchers and practitioners to better contextualize their modeling approaches.
+Several modeling approaches to the evolution of urban and territorial environments have been introduced in the literature, providing complementary viewpoints and methods. This paper contributes to the mapping of this scientific landscape by a citation network analysis. Taking the case study of two landmark types of operational models, namely microsimulation models and land-use transport interaction model, we construct an initial corpus through keyword requests. The backward citation network is then reconstructed up to depth two, yielding a network with $4.54\cdot 10^5$ nodes and $8.07\cdot 10^5$ citation links. Community detection in the network provides endogenous disciplines and approaches, including a broader scope than the initial corpus, with for example spatial statistics and agent-based modeling. We construct measures of interdisciplinarity to identify bridge papers, and investigate possible missing connections. We illustrate these more particularly with the interface of microsimulation, agent-based modeling and land-use transport models, and discuss potential coupling of models filling this gap. We show therein how potential research directions can be unveiled through citation network analysis and provide partial maps of science in the field of urban modeling, which can be used by researchers and practitioners to better contextualize their modeling approaches.
 \end{abstract}
 
 \begin{keyword}
@@ -68,24 +80,104 @@ Several modeling approaches to the evolution of urban and territorial environmen
 %%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 
+Urban modeling, defined broadly as quantitative modeling and simulation aiming at understanding urban processes, has always been a highly multidisciplinary and interdisciplinary subject. Indeed, several disciplines ranging from Urban Economics~\cite{krugman1998s} to Quantitative Urban Geography~\cite{pumain2017geography} or Urban Planning~\cite{knowles2016sir} provide complementary viewpoints by studying different dimensions of urban phenomena. Despite sometimes converging issues, bridges remain rather rare, such as integrating approaches such as the Science of Cities introduced by \cite{batty2013new}. One crucial question in that context is to what extent these different approaches to modeling urban issues may be complementary, and what may the potentially fertile couplings in terms of producing new knowledge.
 
+While problem-specific entries, i.e. studying a specific system and correspondences between some of its models, will shed light on thematic aspects of this question, one can also consider the knowledge landscape in itself to identify existing approaches and potential links. This paper investigates urban modeling at this second level, and proposes to build a mapping of some approaches in urban modeling through citation network analysis. Quantitative studies of science have a long history such as in sociology of science~\cite{barnes1982science}, but recent works have witnessed significant progress driven by the emergence of large dataset and digital libraries. Maps of science have been constructed \cite{boyack2005mapping} and a ``Science of Science'' would be appearing as an interdisciplinary field~\cite{fortunato2018science}. We situate here within that stream of research, using network analysis to better understand the structure of knowledge around the topic of urban modeling.
+
+
+Citation network has to the best of our knowledge never been systematically applied to the subject of urban modeling, in the sense of a broad and general coverage and large dataset. Specific urban issues were however studied through citation network analysis. \cite{van2016pacifying} map the debate around urban region polycentricity. \cite{raimbault2019exploration} develops a multilayer analysis, coupling citations with semantic content, of the neighborhood of a geography journal, including clusters tackling urban questions. 
+
+
+We construct a large corpus of papers, linked through backward citations.
+Our contribution relies on the following points: 
+% (i) sensitivity analysis - info to reconstruct discipline with such empirical data ?
+% (ii) some methodological insights depending on what we do ?
+% (iii) results on urban modeling in themselves <- Maybe insist only on that ?
+
+
+The rest of the paper is organized as follows. We first describe the construction of the dataset. We then explore it answering different thematic questions; ..
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section*{Methods and data}
+\section*{Dataset construction}
 
+\subsection*{Citation network collection}
+
+We propose a double entry to build a broad corpus, on complementary but distinct approaches. This will ensure first that the collected data is representative due to the corpus size limitations, but secondly that potential couplings are included. % REFORMULATE
+
+The initial keyword requests we use are the following: ``microsimulation'', ``microsimulation model'', ``spatial microsimulation model'', ``urban microsimulation model'', ``transport microsimulation model'', ``land use transport interaction model''.
+
+
+Our corpus is surely not exhaustive to urban modeling as we focused on the aforementioned two main entries, and other requests such as ``urban geosimulation'', ``urban growth model'', ``urban agent based model'' would also be relevant. We expect for example, following \cite{wise2016transportation}, to have a strong overlap with our corpus and a potential corpus related to agent-based modeling.
+%urban agent based model, spatial interaction model, spatial interaction agent based model, geosimulation, urban geosimulation, urban cellular automata, urban growth model, urban land use change model, urban land use model
+
+
+
+Language statistics (detected using titles). We do not any semantic analysis here and thus do not filter on language.
+% possible additional analysis by isolating language subnetworks - checking modularity of language communities ?. Typically: Chinese article are only cited by other Chinese articles. similar but less strong effect with French
+
+% main languages
+%    Chinese      Czech      Dutch    English     French   Galician     German Indonesian 
+%     24211        589        872     450149       6425        663       8467        880 
+%   Italian   Japanese     Korean     Polish Portuguese    Russian    Spanish    Swedish 
+%      1641       2457       2080       2284       6348       1981       9234        654 
+%   Turkish 
+%      1196 
+
+
+%%%%%
+% full network
+%IGRAPH 9ceae4d DN-- 467608 834253 -- 
+%+ attr: name (v/c), title (v/c), year (v/c), depth (v/n), priority (v/n), horizontalDepth (v/c), citingFilled (v/c), lang (v/c)
+
+% components(citation)$csize
+% 466610    517      5    246     53     57      6     58      3     10      7      5      7     15      3      2     2      2
+%  2nd comp 517 -> breast cancer ! (should come from "microsimulation" req alone
+% 4th component : agriculture / soils
+
+We keep the giant clusters %TODO cluster statistics
+and the ``core'' of the network, which we define as
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section*{Results}
 
-\subsection*{Community detection}
+\subsection*{Sensitivity analysis}
+
+check modularity = f(horizontal and vertical depth) : insight into the relevant number of initially requested papers
+
+Sensitivity of 'width' of paper. Width=the amount of hits in google scholar we use
+
+Sensitivity of the used key words
+
+Overlap for the different keywords combinations, maybe filter papers that are present in all keyword searches
 
 
-\subsection*{Measuring interdisciplinarity}
+
+\subsection*{Endogenous disciplines}
+
+% cluster sizes
 
 
-\subsection*{A case study: LUTI and microsimulation}
+% Investigate the occurrence of some terms and their membership towards different clusters
+
+
+%Measuring interdisciplinarity
+
+%The existence of clusters related to different tools or techniques (e.g. Matsim)
+
+%Can we reconstruct the cluster based on iterative search terms in google scholar? -- see where the convergence point is for certain terms
+
+
+
+\subsection*{Temporal analysis of communities}
+% Investigate the temporality of the nodes and links % TODO Maarten
+
+% Percolation of links based on frequency of citations or maybe on time also -> is percolation useful at this point ?
+ 
+
+
+%\subsection*{A case study: LUTI and microsimulation}
 
 
 
@@ -93,6 +185,15 @@ Several modeling approaches to the evolution of urban and territorial environmen
 %%%%%%%%%%%%%%%%%%%%%%
 \section*{Discussion}
 
+% possible developments:
+% with semantic content : 
+%Text mining of abstracts to automatically denote -content- of the clusters\
+% Investigate the location of certain authors\\
+% Investigate the propagation of some of the most important works\\
+% Investigate the content of 'connecting' papers
+
+
+% TODO : possible subject for Tongji workshop (search chinese kws)
 
 
 
