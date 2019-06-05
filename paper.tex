@@ -80,53 +80,41 @@ Several modeling approaches to the evolution of urban and territorial environmen
 %%%%%%%%%%%%%%%%%%%%%%
 \section*{Introduction}
 
-Urban modeling, defined broadly as quantitative modeling and simulation aiming at understanding urban processes, has always been a highly multidisciplinary and interdisciplinary subject. Indeed, several disciplines ranging from Urban Economics~\cite{krugman1998s} to Quantitative Urban Geography~\cite{pumain2017geography} or Urban Planning~\cite{knowles2016sir} provide complementary viewpoints by studying different dimensions of urban phenomena. Despite sometimes converging issues, bridges remain rather rare, such as integrating approaches such as the Science of Cities introduced by \cite{batty2013new}. One crucial question in that context is to what extent these different approaches to modeling urban issues may be complementary, and what may the potentially fertile couplings in terms of producing new knowledge.
+Urban modeling, defined broadly as quantitative modeling and simulation aiming at understanding urban processes, has always been a highly multidisciplinary and interdisciplinary subject \cite{ramadier2004transdisciplinarity}. Indeed, several disciplines ranging from Urban Economics~\cite{krugman1998s} to Quantitative Urban Geography~\cite{pumain2017geography} or Urban Planning~\cite{knowles2016sir} provide complementary viewpoints by studying different dimensions of urban phenomena. Despite sometimes converging issues, bridges remain rather rare, such as integrating approaches such as the Science of Cities introduced by \cite{batty2013new}. One crucial question in that context is to what extent these different approaches to modeling urban issues may be complementary, and what may the potentially fertile couplings in terms of producing new knowledge. Indeed, a good knowledge of the scientific landscape, or in other terms a certain level of reflexivity, is crucial for urban modeling studies since as \cite{batty2019map} points out, models become digital twins of modelled systems which themselves play a role in the studied system.
 
-% \cite{ramadier2004transdisciplinarity} transdisciplinarity in urban studies
-% \cite{batty2019map} the digital twin - need of reflexivity, hence understanding modeling landscape is crucial
 
 While problem-specific entries, i.e. studying a specific system and correspondences between some of its models, will shed light on thematic aspects of this question, one can also consider the knowledge landscape in itself to identify existing approaches and potential links. This paper investigates urban modeling at this second level, and proposes to build a mapping of some approaches in urban modeling through citation network analysis. Quantitative studies of science have a long history such as in sociology of science~\cite{barnes1982science}, but recent works have witnessed significant progress driven by the emergence of large dataset and digital libraries. Maps of science have been constructed \cite{boyack2005mapping} and a ``Science of Science'' would be appearing as an interdisciplinary field~\cite{fortunato2018science}. We situate here within that stream of research, using network analysis to better understand the structure of knowledge around the topic of urban modeling.
 
 
-Citation network has to the best of our knowledge never been systematically applied to the subject of urban modeling, in the sense of a broad and general coverage and large dataset. Specific urban issues were however studied through citation network analysis. \cite{van2016pacifying} map the debate around urban region polycentricity. \cite{raimbault2019exploration} develops a multilayer analysis, coupling citations with semantic content, of the neighborhood of a geography journal, including clusters tackling urban questions. 
+Citation network has to the best of our knowledge never been systematically applied to the subject of urban modeling, in the sense of a broad and general coverage and large dataset. Specific urban issues were however studied through citation network analysis. \cite{van2016pacifying} map the debate around urban region polycentricity. \cite{raimbault2019exploration} develops a multilayer analysis, coupling citations with semantic content, of the neighborhood of a geography journal, including clusters tackling urban questions.
 
-% \cite{giatsidis2019rooted} new measures based on subgraph density for citation networks
+%\cite{giatsidis2019rooted} propose  new measures based on subgraph density for citation networks
 
 We construct a large corpus of papers, linked through backward citations.
-Our contribution relies on the following points: 
+Our contribution relies on the following points: (i) the open dataset we make available can be of significant interest for researcher interested in urban modeling; (ii) we map a broad part of approaches to urban modeling, and more particularly clarify the relations between microsimulation, land-use transport modeling, and agent-nased modeling.
 % (i) sensitivity analysis - info to reconstruct discipline with such empirical data ?
 % (ii) some methodological insights depending on what we do ?
 % (iii) results on urban modeling in themselves <- Maybe insist only on that ?
 
 
-The rest of the paper is organized as follows. We first describe the construction of the dataset. We then explore it answering different thematic questions; ..
+The rest of the paper is organized as follows. We first describe the construction of the dataset, i.e. the initial assumptions and data collection process, and the filtering steps to work on a relevant network. We then study its sensitivity to construction parameters, what allows to comment on endogenous disciplines and study the evolution of communities in time. We finally discuss the implication of these results, for example in the context of coupling approaches.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
 \section*{Dataset construction}
 
-\subsection*{Citation network collection}
+\subsection*{Initial seed}
 
-We propose a double entry to build a broad corpus, on complementary but distinct approaches. This will ensure first that the collected data is representative due to the corpus size limitations, but secondly that potential couplings are included. % REFORMULATE
+We propose a multiple keyword entry to build a broad corpus, on complementary but distinct approaches. This will ensure first that the collected data is representative due to the corpus size limitations, but secondly that potential couplings are included. % REFORMULATE
 
 The initial keyword requests we use are the following: ``microsimulation'', ``microsimulation model'', ``spatial microsimulation model'', ``urban microsimulation model'', ``transport microsimulation model'', ``land use transport interaction model''.
 
 
-Our corpus is surely not exhaustive to urban modeling as we focused on the aforementioned two main entries, and other requests such as ``urban geosimulation'', ``urban growth model'', ``urban agent based model'' would also be relevant. We expect for example, following \cite{wise2016transportation}, to have a strong overlap with our corpus and a potential corpus related to agent-based modeling.
+Our corpus is surely not exhaustive to urban modeling as we focused on the aforementioned two main entries, and other requests such as ``urban geosimulation'', ``urban growth model'', ``urban agent based model'' would also be relevant. We expect for example, following \cite{wise2016transportation}, to have a strong overlap with our corpus and a potential corpus related to agent-based modeling. Similarly, other sub-fields of urban modeling such as cellular automata \cite{white1993cellular} or geosimulation \cite{benenson2004geosimulation} are expected to be highly interwined with our corpus from a thematic viewpoint.
 %urban agent based model, spatial interaction model, spatial interaction agent based model, geosimulation, urban geosimulation, urban cellular automata, urban growth model, urban land use change model, urban land use model
 
 
-
-Language statistics (detected using titles). We do not any semantic analysis here and thus do not filter on language.
-% possible additional analysis by isolating language subnetworks - checking modularity of language communities ?. Typically: Chinese article are only cited by other Chinese articles. similar but less strong effect with French
-
-% main languages
-%    Chinese      Czech      Dutch    English     French   Galician     German Indonesian 
-%     24211        589        872     450149       6425        663       8467        880 
-%   Italian   Japanese     Korean     Polish Portuguese    Russian    Spanish    Swedish 
-%      1641       2457       2080       2284       6348       1981       9234        654 
-%   Turkish 
-%      1196 
+\subsection*{Citation network collection}
 
 
 %%%%%
@@ -134,17 +122,34 @@ Language statistics (detected using titles). We do not any semantic analysis her
 %IGRAPH 9ceae4d DN-- 467608 834253 -- 
 %+ attr: name (v/c), title (v/c), year (v/c), depth (v/n), priority (v/n), horizontalDepth (v/c), citingFilled (v/c), lang (v/c)
 
+
+
+\subsection*{Network filtering}
+
+Language statistics (detected using titles). We do not include in our analysis any semantic analysis and thus do not filter on language of papers. Note that as we work on citation networks, cross-language citations are a common feature and different languages will not produce isolated clusters. In any case, a language detection with the python package \texttt{polyglot} confirms that most of the corpus is in English (86.6\%), secondary main language being Mandarin (4.7\%), Spanish (1.8\%), German (1.6\%), French (1.2\%) and Portuguese (1.2\%).
+% possible additional analysis by isolating language subnetworks - checking modularity of language communities ?. Typically: Chinese article are only cited by other Chinese articles. similar but less strong effect with French
+
+%     Czech    Swedish   Galician      Dutch Indonesian    Turkish   
+% 0.1129035  0.1259161  0.1274470  0.1672503  0.1693553  0.2309738  
+% Italian    Russian     Korean     Polish 
+%0.3155558  0.3832979  0.3987982  0.4384102 
+%  Japanese Portuguese     French     German    Spanish  
+% 0.4720899  1.2195495  1.2339017  1.6231318  1.7783263 
+% Chinese    English 
+%4.6506688 86.5524236
+
+
+
 % components(citation)$csize
 % 466610    517      5    246     53     57      6     58      3     10      7      5      7     15      3      2     2      2
 %  2nd comp 517 -> breast cancer ! (should come from "microsimulation" req alone
 % 4th component : agriculture / soils
 
-We keep the giant clusters %TODO cluster statistics
-and the ``core'' of the network, which we define as
+We keep the giant connected cluster of the resulting network, which covers 99.8\% of all nodes (yielding at this step $\left|V\right| = 466,610$ nodes). Inspection of removed clusters confirms that these are not relevant to urban issues (medical or chemistry microsimulations for example). Because of the way citation networks are organized and how our dataset was constructed, the full network contains a large part of ``graps'' which consist in several uncited papers citing the same one. We choose thus to work on the ``core'' of the network, which we construct by successively removing nodes of degree less or equal to one until there are no more such nodes.
 
 
 %%%%%%%%%%%%%%%%%%%%%%
-\section*{Results}
+\section*{Mapping the scientific landscape}
 
 \subsection*{Sensitivity analysis}
 
@@ -152,17 +157,35 @@ and the ``core'' of the network, which we define as
 
 Before being able to proceed to any thematically relevant network analysis, a sensitivity analysis of network properties as a function of construction parameters is necessary. More particularly, the results may be strongly dependent on the number of search results retained and on the requests used. This preliminary aims at checking this dependency and extract the most robust subnetwork possible for the rest of the analysis.
 
+We first investigate how network topology varies as a function of horizontal depth.
 
 
+%%%%%%%%
+\begin{figure}
+    \centering
+    \includegraphics{}
+    \caption{}
+    \label{fig:modularity-hdepth}
+\end{figure}
+%%%%%%%%
 
 
-Overlap for the different keywords combinations, maybe filter papers that are present in all keyword searches
+We then assess that a certain level of overlap exists between the sub-networks originating from different initial requests. As shown in Fig.~\ref{fig:coverage-hdepth}
+
+%%%%%%%%
+\begin{figure}
+    \centering
+    \includegraphics{figures/coveragesubnws.png}
+    \caption{}
+    \label{fig:coverage-hdepth}
+\end{figure}
+%%%%%%%%
 
 
-
-\subsection*{Endogenous disciplines}
+\subsection*{Reconstructing endogenous disciplines}
 
 % cluster sizes
+The distribution of community size is fat-tailed in a power-law manner
 
 
 % Investigate the occurrence of some terms and their membership towards different clusters
@@ -171,8 +194,6 @@ Overlap for the different keywords combinations, maybe filter papers that are pr
 %Measuring interdisciplinarity
 
 %The existence of clusters related to different tools or techniques (e.g. Matsim)
-
-%Can we reconstruct the cluster based on iterative search terms in google scholar? -- see where the convergence point is for certain terms
 
 
 
@@ -197,6 +218,8 @@ Overlap for the different keywords combinations, maybe filter papers that are pr
 % Investigate the location of certain authors\\
 % Investigate the propagation of some of the most important works\\
 % Investigate the content of 'connecting' papers
+
+%Can we reconstruct the cluster based on iterative search terms in google scholar? -- see where the convergence point is for certain terms
 
 
 % TODO : possible subject for Tongji workshop (search chinese kws)
