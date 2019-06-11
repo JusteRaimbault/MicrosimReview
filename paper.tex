@@ -110,11 +110,19 @@ We propose a multiple keyword entry to build a broad corpus, on complementary bu
 The initial keyword requests we use are the following: ``microsimulation'', ``microsimulation model'', ``spatial microsimulation model'', ``urban microsimulation model'', ``transport microsimulation model'', ``land use transport interaction model''.
 
 
-Our corpus is surely not exhaustive to urban modeling as we focused on the aforementioned two main entries, and other requests such as ``urban geosimulation'', ``urban growth model'', ``urban agent based model'' would also be relevant. We expect for example, following \cite{wise2016transportation}, to have a strong overlap with our corpus and a potential corpus related to agent-based modeling. Similarly, other sub-fields of urban modeling such as cellular automata \cite{white1993cellular} or geosimulation \cite{benenson2004geosimulation} are expected to be highly interwined with our corpus from a thematic viewpoint.
+Our corpus is surely not exhaustive to urban modeling as we focused on the aforementioned two main entries, and other requests such as ``urban geosimulation'', ``urban growth model'', ``urban agent based model'' would also be relevant. We expect for example, following \cite{wise2016transportation}, to have a strong overlap with our corpus and a potential corpus related to agent-based modeling. Similarly, other sub-fields of urban modeling such as cellular automata \cite{white1993cellular} or geosimulation \cite{benenson2004geosimulation} are expected to be highly intertwined with our corpus from a thematic viewpoint. To what extent these are indeed present in the corpus is an important property we will investigate.
 %urban agent based model, spatial interaction model, spatial interaction agent based model, geosimulation, urban geosimulation, urban cellular automata, urban growth model, urban land use change model, urban land use model
 
 
 \subsection*{Citation network collection}
+
+
+To collect bibliographic data, we follow the method introduced by \cite{raimbault2019exploration} which gathers a corpus from google scholar, and provide the open tools to do so. This source is not the best regarding metadata quality for example, but is much more exhaustive on grey literature or preprints and thus reflects the actual state of a field as it is practiced rather than a filtered and lagged in time image of it.
+% remark : for some discplines / domains, this should be significantly important - I'm thinking of physics with preprints or computer science which publishes mostly in proceedings.
+
+
+% TODO here introduce the horizontal depth parameter
+The initial keyword requests are achieved given a parameter $h_d$ (horizontal depth), corresponding to the number of papers kept for each request. Intuitively, one could expect to retain core papers to the subject for low $h_d$ values while covering broader landscapes for high values. This will be studied with a sensitivity analysis below.
 
 
 %%%%%
@@ -122,6 +130,8 @@ Our corpus is surely not exhaustive to urban modeling as we focused on the afore
 %IGRAPH 9ceae4d DN-- 467608 834253 -- 
 %+ attr: name (v/c), title (v/c), year (v/c), depth (v/n), priority (v/n), horizontalDepth (v/c), citingFilled (v/c), lang (v/c)
 
+
+The full network has a count of $\left|V\right|= 467,608$ nodes and $\left|E\right|=834,253$ citation links. 
 
 
 \subsection*{Network filtering}
@@ -145,7 +155,10 @@ Language statistics (detected using titles). We do not include in our analysis a
 %  2nd comp 517 -> breast cancer ! (should come from "microsimulation" req alone
 % 4th component : agriculture / soils
 
-We keep the giant connected cluster of the resulting network, which covers 99.8\% of all nodes (yielding at this step $\left|V\right| = 466,610$ nodes). Inspection of removed clusters confirms that these are not relevant to urban issues (medical or chemistry microsimulations for example). Because of the way citation networks are organized and how our dataset was constructed, the full network contains a large part of ``graps'' which consist in several uncited papers citing the same one. We choose thus to work on the ``core'' of the network, which we construct by successively removing nodes of degree less or equal to one until there are no more such nodes.
+We keep the giant connected cluster of the resulting network, which covers 99.8\% of all nodes.
+%(yielding at this step $\left|V\right| = 466,610$ nodes).
+ Inspection of removed clusters confirms that these are not relevant to urban issues (medical or chemistry microsimulations for example). Because of the way citation networks are organized and how our dataset was constructed, the full network contains a large part of ``graps'' which consist in several uncited papers citing the same one. We choose thus to work on the ``core'' of the network, which we construct by successively removing nodes of degree less or equal to one until there are no more such nodes. We finally remove manually two communities corresponding to medical science and economics of taxes papers, which appear to be connected (most probably through methodological papers) but are not relevant for our study. The final filtered network has a size of % TODO
+  .
 
 
 %%%%%%%%%%%%%%%%%%%%%%
@@ -163,7 +176,7 @@ We first investigate how network topology varies as a function of horizontal dep
 %%%%%%%%
 \begin{figure}
     \centering
-    \includegraphics{}
+    %\includegraphics{figures/}}}
     \caption{}
     \label{fig:modularity-hdepth}
 \end{figure}
@@ -176,7 +189,7 @@ We then assess that a certain level of overlap exists between the sub-networks o
 \begin{figure}
     \centering
     \includegraphics{figures/coveragesubnws.png}
-    \caption{}
+    \caption{Relative coverage of sub-networks for each initial request, as a function of horizontal depth $h_d$.}
     \label{fig:coverage-hdepth}
 \end{figure}
 %%%%%%%%
@@ -187,17 +200,39 @@ We then assess that a certain level of overlap exists between the sub-networks o
 % rq ; microsim does not appear explicitely in main title -> finally "in minority" in urban modeling ;  other terms (in case of same approach) and other approaches are preefered.
 
 % cluster sizes
-The distribution of community size is fat-tailed in a power-law manner
+The distribution of community size is fat-tailed in a power-law manner, as scientific disciplines generally are. % TODO ref on that ?
+ We can thus limit our study to the most important communities.
 
 
 % Investigate the occurrence of some terms and their membership towards different clusters
 
 % graph visualization and relative positioning of disciplines
 
+We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained with $h_d=3$.
+
+% Q : what about older nws ? also show interesting entry through one kw only. - we can not visualize everything unfortunately.
+%%%%%%%%
+\begin{figure}
+    \centering
+    \includegraphics{figures/corehdepth3filteredLOWRES.png}
+    \caption{Network visualization for $h_d = 3$. Node color give community obtained with the Louvain algorithm.}
+    \label{fig:networkviz}
+\end{figure}
+%%%%%%%%
+
+
+
+
 
 %Measuring interdisciplinarity
 
 %The existence of clusters related to different tools or techniques (e.g. Matsim)
+
+
+\subsubsection*{A case study: LUTI, microsimulation and agent-based modeling}
+
+% specific viz including 4 "core thematic clusters" -> abm, microsim, luti + complex systems (glue ?) [no transport abm : microsim]
+% - one hypothesis (seen in temporal analysis) : complex system/complex network approaches as linking prviously less related approaches ?
 
 
 
@@ -208,7 +243,7 @@ The distribution of community size is fat-tailed in a power-law manner
  
 
 
-%\subsection*{A case study: LUTI and microsimulation}
+
 
 
 
