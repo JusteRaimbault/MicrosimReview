@@ -158,7 +158,7 @@ Language statistics (detected using titles). We do not include in our analysis a
 
 We keep the giant connected cluster of the resulting network, which covers 99.8\% of all nodes.
 %(yielding at this step $\left|V\right| = 466,610$ nodes).
- Inspection of removed clusters confirms that these are not relevant to urban issues (medical or chemistry microsimulations for example). Because of the way citation networks are organized and how our dataset was constructed, the full network contains a large part of ``graps'' which consist in several uncited papers citing the same one. We choose thus to work on the ``core'' of the network, which we construct by successively removing nodes of degree less or equal to one until there are no more such nodes. We finally remove manually two communities corresponding to medical science and economics of taxes papers, which appear to be connected (most probably through methodological papers) but are not relevant for our study. The final filtered network has a size of % TODO
+ Inspection of removed clusters confirms that these are not relevant to urban issues (medical or chemistry microsimulations for example). Because of the way citation networks are organized and how our dataset was constructed, the full network contains a large part of ``graps'' which consist in several uncited papers citing the same one. We choose thus to work on the ``core'' of the network, which we construct by successively removing nodes of degree less or equal to one until there are no more such nodes. We finally remove manually two communities corresponding to medical science and economics of taxes papers, which appear to be connected (most probably through methodological papers) but are not relevant for our study. The final filtered network, on which we will work in the following, has a size of % TODO
   .
 
 
@@ -177,8 +177,8 @@ We first investigate how network topology varies as a function of horizontal dep
 %%%%%%%%
 \begin{figure}
     \centering
-    %\includegraphics{figures/}}}
-    \caption{}
+    \includegraphics[width=\linewidth]{figures/sensitivity_fullnw_hdmax100_subnws_modularity.png}
+    \caption{\csentence{Modularity of subnetworks as a function of horizontal depth.}}
     \label{fig:modularity-hdepth}
 \end{figure}
 %%%%%%%%
@@ -189,33 +189,97 @@ We then assess that a certain level of overlap exists between the sub-networks o
 %%%%%%%%
 \begin{figure}
     \centering
-    \includegraphics{figures/coveragesubnws.png}
-    \caption{Relative coverage of sub-networks for each initial request, as a function of horizontal depth $h_d$.}
+    \includegraphics[width=0.52\linewidth]{figures/coveragesubnws.png}
+    \includegraphics[width=0.38\linewidth]{figures/pareto_vcount-modularity.png}
+    \caption{(\textit{Left}) Relative coverage of sub-networks for each initial request, as a function of horizontal depth $h_d$; (\textit{Right}) Optimization of network properties.}
     \label{fig:coverage-hdepth}
 \end{figure}
 %%%%%%%%
 
+%%%%
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=\linewidth]{figures/overlaps_relative.png}
+%    \caption{Overlaps between subnetworks, for different horizontal depth values.}
+%\end{figure}
+
+
 
 \subsection*{Reconstructing endogenous disciplines}
 
-% rq ; microsim does not appear explicitely in main title -> finally "in minority" in urban modeling ;  other terms (in case of same approach) and other approaches are preefered.
 
 % cluster sizes
-The distribution of community size is fat-tailed in a power-law manner, as scientific disciplines generally are. % TODO ref on that ?
- We can thus limit our study to the most important communities.
+The distribution of community size is fat-tailed, while however not being power-law distributed (presence of two regimes)
+
+
+%% largest communities (>1% of the network)
+%[1] "35 ; Urban growth modeling ; 11.1269367053429"
+%[1] "11 ; Built environment ; 10.0326547627319"%
+%[1] "31 ; Urban modeling/Luti ; 9.25102480372403"
+%[1] "17 ; Transportation microsimulation ; 7.41679983325228"
+%[1] "36 ; Complexity ; 5.75279649829778"
+%[1] "2 ; Pedestrian microsimulation ; 5.00590564857917"
+%[1] "16 ; Geosimulation ; 5.00243173765025"
+%[1] "1 ; Evacuation modeling ; 4.90168832071146"
+%[1] "34 ; Accessibility ; 4.73494059612312"
+%[1] "25 ; Population microsimulation ; 4.70020148683388"
+%[1] "10 ; Energy ; 3.44959355242132"
+%[1] "22 ; Congestion ; 3.30021538247759"
+%[1] "4 ; Logistics simulation ; 3.09525463767109"
+%[1] "27 ; Route choice ; 2.66101577155562"
+%[1] "28 ; Transportation physics ; 2.4247898283888"%
+%[1] "18 ; Transportation economics ; 2.36920725352602"
+%[1] "24 ; Spatial interactions ; 2.29625512401862"
+%[1] "20 ; Urban metabolism ; 1.87591190161884"
+%[1] "9 ; Critical infrastructures ; 1.62231640380741"
+%[1] "19 ; Social networks ; 1.60147293823386"
+%[1] "6 ; Demographics ; 1.43472521364552"
+%[1] "7 ; Mobility simulation ; 1.33050788577781"
+
+We describe in Table~\ref{tab:communities} the content of the largest communities (relative size larger than 2\% of network nodes). Several communities correspond to microsimulation approaches, but not most nor the largest. This is not due to an imbalance in subnetworks sizes, as the coverage graph in Fig.~\ref{fig:coverage-hdepth} already suggested. This confirms that urban modeling approaches considered are rather robust to the entry taken and that they form a broad consistent discipline.
+% largest is ca model - kind of microsim although they do not use the term
+
+
+%%%%%%%%%%%%%
+\begin{table}[h!]
+\caption{Description of main communities.\label{tab:communities}}
+% NOTE : for main papers, always taken among the two with largest in-degree [note done on purpose that so much Mike's papers !]
+      \begin{tabular}{|ccc|}
+        \hline
+        Community & Relative size (\%)  & Main papers   \\ \hline
+        Urban growth modeling & 11.1 & \cite{cheng2003urban} \cite{johnson2001environmental} \\
+        Built environment & 10.0 & \cite{ewing2010travel}  \\
+        Urban modeling/Luti & 9.3 & \cite{wegener2004overview} \cite{batty1976urban} \\
+        Transportation microsimulation & 7.4 & \cite{smith1995transims} \\
+        Complexity & 5.8 & \cite{batty2013new} \\
+        Pedestrian microsimulation & 5.0 & \cite{blue2001cellular} \\
+        Geosimulation & 5.0 & \cite{crooks2008key} \\
+        Evacuation modeling & 4.9 & \cite{cova2003network} \\
+        Accessibility & 4.7 & \cite{rodrigue2016geography} \\
+        Population microsimulation & 4.7 & \cite{beckman1996creating} \\
+        Energy & 3.4 & \cite{keirstead2012review} \\
+        Congestion & 3.3 & \cite{gomes2004congested} \\
+        Logistics microsimulation & 3.1 & \cite{hunt2007tour} \\
+        Route choice & 2.6 & \cite{ramming2001network} \\
+        Transportation physics & 2.4 & \cite{chowdhury2000statistical} \\
+        Transportation economics & 2.4 & \cite{small2007economics} \\
+        Spatial interactions & 2.3 & \cite{fotheringham1983new} \\\hline
+      \end{tabular}
+\end{table}
+%%%%%%%%%%%%%
 
 
 % Investigate the occurrence of some terms and their membership towards different clusters
 
 % graph visualization and relative positioning of disciplines
 
-We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained with $h_d=3$.
+We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained with $h_d=3$. The relative positioning of communities is particularly interesting to understand proximities between subfields (we used a Force Atlas 2 network spatialization algorithm, which provide accurate information in terms of proximity although being not deterministic, since attraction forces betweem two communities will be shaped by the number of links between them).
 
-% Q : what about older nws ? also show interesting entry through one kw only. - we can not visualize everything unfortunately.
+
 %%%%%%%%
 \begin{figure}
     \centering
-    \includegraphics{figures/corehdepth3filteredLOWRES.png}
+    \includegraphics[width=\linewidth]{figures/corehdepth3filteredLOWRES.png}
     \caption{Network visualization for $h_d = 3$. Node color give community obtained with the Louvain algorithm.}
     \label{fig:networkviz}
 \end{figure}
@@ -260,7 +324,7 @@ We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained wit
 % Investigate the content of 'connecting' papers
 
 %Can we reconstruct the cluster based on iterative search terms in google scholar? -- see where the convergence point is for certain terms
-
+% . - index a large corpus with texts ; test different search algos ; investigate "semantic stability" of communities [cf sysalgoreview]
 
 % TODO : possible subject for Tongji workshop (search chinese kws)
 
