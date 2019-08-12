@@ -209,7 +209,9 @@ We then assess that a certain level of overlap exists between the sub-networks o
 
 
 % cluster sizes
-The distribution of community size is fat-tailed, while however not being power-law distributed (presence of two regimes)
+The distribution of community size is fat-tailed, while however not being power-law distributed (presence of two regimes, a first with communities with a size larger than 1\% of the network relatively balanced with a rank-size slope of -0.73 for an R-squared of 0.89, a second also relatively close to a power law with a fit of 0.76 but highly hierarchical with $\alpha = -1.5$ and negligible in any case).
+% TODO reformulate that shit
+
 
 
 %% largest communities (>1% of the network)
@@ -236,8 +238,11 @@ The distribution of community size is fat-tailed, while however not being power-
 %[1] "6 ; Demographics ; 1.43472521364552"
 %[1] "7 ; Mobility simulation ; 1.33050788577781"
 
-We describe in Table~\ref{tab:communities} the content of the largest communities (relative size larger than 2\% of network nodes). Several communities correspond to microsimulation approaches, but not most nor the largest. This is not due to an imbalance in subnetworks sizes, as the coverage graph in Fig.~\ref{fig:coverage-hdepth} already suggested. This confirms that urban modeling approaches considered are rather robust to the entry taken and that they form a broad consistent discipline.
+We describe in Table~\ref{tab:communities} the content of the largest communities (relative size larger than 2\% of network nodes). Several communities correspond to microsimulation approaches, but not most nor the largest. This is not due to an imbalance in subnetworks sizes, as the coverage graph in Fig.~\ref{fig:coverage-hdepth} already suggested. This confirms that urban modeling approaches considered are rather robust to the entry taken and that they form a broad consistent discipline. The largest community corresponds to urban cellular automata models, mostly applied to land-use change modeling and urban sprawl. This class of models is computational and very close to microsimulation indeed, but does not state so in semantic terms, what recalls the contingency of scientific descriptions and theories. We then find mostly expected (from an expert viewpoint % TODO Mike need your view on this
+) communities, including modeling the role on the built environment, urban modeling and land-use transport models, transport microsimulation models, complex urban science, and several either methodological or thematic domains (for example geosimulation and transportation economics are mostly disciplinary or methodological, while congestion, energy and logistics are defined by their object of study although they have been studied mostly by a single discipline.
 % largest is ca model - kind of microsim although they do not use the term
+% TODO IDEA : would it be possible to **endogenously** isolate these method/social/disci/thematic communities ? => USING HIGHER ORDER INFO INCLUDING : coauthorshiups nws, semantic nws, cojournal / journal proximities , colab ; etc. ==> multilayer approach could more effectively capture knowledge domains - multidimensional aspects of science.
+%The existence of clusters related to different tools or techniques (e.g. Matsim)
 
 
 %%%%%%%%%%%%%
@@ -269,29 +274,49 @@ We describe in Table~\ref{tab:communities} the content of the largest communitie
 %%%%%%%%%%%%%
 
 
-% Investigate the occurrence of some terms and their membership towards different clusters
 
-% graph visualization and relative positioning of disciplines
-
-We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained with $h_d=3$. The relative positioning of communities is particularly interesting to understand proximities between subfields (we used a Force Atlas 2 network spatialization algorithm, which provide accurate information in terms of proximity although being not deterministic, since attraction forces betweem two communities will be shaped by the number of links between them).
+We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained with $h_d=3$. The relative positioning of communities is particularly interesting to understand proximities between subfields (we used a Force Atlas 2 network spatialization algorithm, which provide accurate information in terms of proximity although being not deterministic, since attraction forces betweem two communities will be shaped by the number of links between them). For this reason, it is natural to find at the core of the spatialized network the Luti, population and transportation microsimulation communities. 
+% TODO check if complexity community is indeed merged with the CA one in the gephi community detection ; otherwise maybe change color as misleading.
+The complexity community is distributed as a glue between microsimulation approaches and urban modeling and Luti approaches, in accordance with the integrative ambition of these theories and models. Similarly, the transport geography (accessibility) community has its main papers at the interface between Luti and the built environment community. The network core is then surrounded by more or less peripheral communities, including statistical physics pedestrian models, urban energy models, logistics, transportation economics, congestion.
+% rq : in theory, the span/concentration of communities also means something : if they are highly self-citing, and is they are torn in different directions ( -> is this true indeed ? )
 
 
 %%%%%%%%
 \begin{figure}
     \centering
     \includegraphics[width=\linewidth]{figures/corehdepth3filteredLOWRES.png}
-    \caption{Network visualization for $h_d = 3$. Node color give community obtained with the Louvain algorithm.}
+    \caption{\csentence{Core citation network visualization.} We show here the filtered core obtained for $h_d = 3$. Node color give community obtained with the Louvain algorithm. The network is spatialized using a Force atlas 2 algorithm, with the Gephi visualization software.}
     \label{fig:networkviz}
 \end{figure}
-%%%%%%%%
+%%%%%%%%s
 
+
+% proximity between communities (relative proportion of links)
+
+We compute the proximity between communities using a simple indicator, namely the proportion of out-citation links made outside the community.
+
+
+%%%%%%%%%%%
+\begin{figure}
+	\centering
+	\includegraphics[width=\linewidth]{figures/com_intercit_proportion.png}
+	\caption{\csentence{Proximity matrix between communities.} We show the propostion of out-going links (note that the matrix is not symmetric as citation links are directed).}
+	\label{fig:outcitprop}
+\end{figure}
+%%%%%%%%%%%
 
 
 
 
 %Measuring interdisciplinarity
 
-%The existence of clusters related to different tools or techniques (e.g. Matsim)
+% -> distrib of interdisc index as diversity of citations (herfindhal on outcoming links \!/ check if significant as the network was not constructed this way [implies to be able to quantify this]
+
+
+
+
+
+
 
 
 \subsubsection*{A case study: LUTI, microsimulation and agent-based modeling}
@@ -318,6 +343,7 @@ We show in Fig.~\ref{fig:networkviz} a visualization of the network obtained wit
 
 % possible developments:
 % with semantic content : 
+% Investigate the occurrence of some terms and their membership towards different clusters -> semantic ; as development ?
 %Text mining of abstracts to automatically denote -content- of the clusters\
 % Investigate the location of certain authors\\
 % Investigate the propagation of some of the most important works\\
