@@ -1,4 +1,6 @@
 .DS_Store
 .texpadtmp
-*.pdf
+paper.pdf
+abstract.pdf
+build
 
